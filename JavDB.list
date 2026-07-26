@@ -1,0 +1,27 @@
+# NAME: JavDB
+# AUTHOR: lesspem
+# REPO: https://github.com/lesspem/Surge
+# UPDATED: 2026-07-26 12:11:23
+# DOMAIN-SUFFIX: 8
+# IP-CIDR: 12
+# TOTAL: 20
+DOMAIN-SUFFIX,javdb.com
+DOMAIN-SUFFIX,jav.app
+DOMAIN-SUFFIX,javdb570.com
+DOMAIN-SUFFIX,javdb571.com
+DOMAIN-SUFFIX,javdb572.com
+DOMAIN-SUFFIX,javdb573.com
+DOMAIN-SUFFIX,javdb574.com
+DOMAIN-SUFFIX,javdb565.com
+IP-CIDR,31.13.106.4/32,no-resolve
+IP-CIDR,104.21.48.185/32,no-resolve
+IP-CIDR,172.67.136.61/32,no-resolve
+IP-CIDR,172.67.143.141/32,no-resolve
+IP-CIDR,104.21.39.55/32,no-resolve
+IP-CIDR,67.228.235.93/32,no-resolve
+IP-CIDR,172.67.202.110/32,no-resolve
+IP-CIDR,104.21.14.55/32,no-resolve
+IP-CIDR,172.67.179.54/32,no-resolve
+IP-CIDR,104.21.91.201/32,no-resolve
+IP-CIDR,172.67.131.169/32,no-resolve
+IP-CIDR,104.21.4.47/32,no-resolve
