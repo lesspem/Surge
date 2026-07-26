@@ -1,0 +1,16 @@
+# NAME: Gmail
+# AUTHOR: lesspem
+# REPO: https://github.com/lesspem/Surge
+# UPDATED: 2026-07-26 12:54:17
+# DOMAIN-SUFFIX: 2
+# IP-CIDR: 7
+# TOTAL: 9
+DOMAIN-SUFFIX,gmail.com
+DOMAIN-SUFFIX,googlemail.com
+IP-CIDR,142.250.73.133/32,no-resolve
+IP-CIDR,142.251.33.197/32,no-resolve
+IP-CIDR,142.250.73.69/32,no-resolve
+IP-CIDR,142.251.34.193/32,no-resolve
+IP-CIDR,74.125.199.109/32,no-resolve
+IP-CIDR,74.125.20.109/32,no-resolve
+IP-CIDR,74.125.20.108/32,no-resolve
