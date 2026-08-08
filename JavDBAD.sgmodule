@@ -1,8 +1,8 @@
 #!name=JavDB 去广告/开屏/公告 (lesspem)
-#!desc=v1.9.29 适配。脚本经 jsDelivr 镜像加载（国内稳）。去内部广告/开屏/启动公告。
+#!desc=v1.9.29 适配。API 域名 api.liquidlink.cn。去内部广告/开屏/启动公告。
 
 [rewrite_local]
-^https?:\/\/api\.[^\/]+\/api url script-response-body https://cdn.jsdelivr.net/gh/lesspem/Surge@main/JavDBAD.js
+^https?:\/\/api\.liquidlink\.cn\/api url script-response-body https://cdn.jsdelivr.net/gh/lesspem/Surge@main/JavDBAD.js
 
 [mitm]
-hostname = api.*
+hostname = api.liquidlink.cn
