@@ -1,9 +1,9 @@
 #!name=JavDB (Astarte) 去广告 & 去公告
-#!desc=去除 JavDB App 开屏广告、公告/請注意弹窗、首页/磁链页广告。逻辑对齐已验证的 QX 配置，MITM 覆盖全部备用域名，脚本内联无网络依赖。
+#!desc=去除 JavDB App 开屏广告、公告/請注意弹窗、首页/磁链页广告。逻辑复用已验证的 javdbapp.js（script-path 外链），MITM 覆盖全部备用域名。
 #!author=lesspem
 #!homepage=https://github.com/lesspem/Surge
 
-# 必须解密所有备用 API 域名才能让脚本拿到明文 body（Surge 需安装并信任 CA）
+# 必须解密所有备用 API 域名才能让脚本拿到明文 body（Surge 需单独开启 MitM 并信任 CA，与 QX 互不通用）
 [MITM]
 hostname = apidd.spthgb.com, apidd.czssdgz.com, apidd.btyjscl.com, api.ffaoa.com, api.aliycloud.com, api.liquidlink.cn, tp.spfcas.com
 
@@ -12,7 +12,6 @@ hostname = apidd.spthgb.com, apidd.czssdgz.com, apidd.btyjscl.com, api.ffaoa.com
 ^https?:\/\/tp\.spfcas\.com\/[^\/]+\/ads\/.*$ reject-img
 ^https?:\/\/api\.liquidlink\.cn\/api\/.*$ reject-dict
 
-# 核心：内联脚本把 startup/ads 两个接口的广告与弹窗载荷删除
-# 匹配任意域名（.+），覆盖全部备用 API；脚本已 base64 内联，单文件即可分发
+# 核心：外链脚本处理 startup/ads 两接口（匹配任意域名，覆盖全部备用 API）
 [Script]
-javdb_ad_remover = type=http-response, pattern=^https?:\/\/.+\/api\/v\d+\/(ads|startup), requires-body=1, max-size=-1, script-content=Ly8gSmF2REIgQXBwIGFkLXJlbW92ZXIgKFN1cmdlIGh0dHAtcmVzcG9uc2UpCi8vIOmAu+i+keerr+WPo+iHqumqjOivgeWPr+eUqOeahCBRWCDphY3nva4gamF2ZGJhcHAuanPvvIzlhbzlrrkgU3VyZ2UgJHJlcXVlc3QvJHJlc3BvbnNlLyRkb25lCigoKSA9PiB7CiAgY29uc3QgdXJsID0gJHJlcXVlc3QudXJsOwogIGxldCBvYmo7CiAgdHJ5IHsKICAgIG9iaiA9IEpTT04ucGFyc2UoJHJlc3BvbnNlLmJvZHkpOwogIH0gY2F0Y2ggKGUpIHsKICAgIGNvbnNvbGUubG9nKCdbamF2ZGItYWRdIHBhcnNlIGVycm9yOiAnICsgdXJsKTsKICAgICRkb25lKHt9KTsKICAgIHJldHVybjsKICB9CiAgY29uc29sZS5sb2coJ1tqYXZkYi1hZF0gZmlyZWQ6ICcgKyB1cmwpOwogIGlmIChvYmogJiYgb2JqLmRhdGEpIHsKICAgIC8vIC9hcGkvdjEvc3RhcnR1cDog5Yig6Zmk5byA5bGP5bm/5ZGKICsg5YWs5ZGKL+iri+azqOaEj+W8ueeql++8iOWIoOmUruiAjOmdnue9ruepuu+8jOmBv+WFjSBBcHAg5LuN5by556qX77yJCiAgICBpZiAodXJsLmluZGV4T2YoJy9hcGkvdjEvc3RhcnR1cCcpICE9PSAtMSkgewogICAgICBkZWxldGUgb2JqLmRhdGEuc3BsYXNoX2FkOwogICAgICBpZiAob2JqLmRhdGEuc2V0dGluZ3MpIHsKICAgICAgICBkZWxldGUgb2JqLmRhdGEuc2V0dGluZ3MuTk9USUNFOwogICAgICAgIGRlbGV0ZSBvYmouZGF0YS5zZXR0aW5ncy5VUERBVEVfREVTQ1JJUFRJT047CiAgICAgIH0KICAgIH0KICAgIC8vIC9hcGkvdjEvYWRzOiDmuIXnqbrpppbpobXpobbpg6ggLyDno4Hpk77pobXlub/lkYrkvY0KICAgIGVsc2UgaWYgKHVybC5pbmRleE9mKCcvYXBpL3YxL2FkcycpICE9PSAtMSkgewogICAgICBvYmouZGF0YS5lbmFibGVkID0gZmFsc2U7CiAgICAgIG9iai5kYXRhLmFkcyA9IHt9OwogICAgfQogIH0KICAkZG9uZSh7IGJvZHk6IEpTT04uc3RyaW5naWZ5KG9iaikgfSk7Cn0pKCk7Cg==
+javdb_ad_remover = type=http-response, pattern=^https?:\/\/.+\/api\/v\d+\/(ads|startup), requires-body=1, max-size=-1, script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdb_surge.js
