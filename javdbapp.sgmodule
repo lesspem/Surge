@@ -1,0 +1,22 @@
+#!name=JavDB App 去广告 & 去公告
+#!desc=移除 JavDB App 开屏广告、首页顶部/磁链页广告位、启动公告弹窗，并拦截第三方追踪 SDK
+#!author=lesspem
+#!homepage=https://github.com/lesspem/Surge
+#!category=去广告
+
+[Rule]
+# 第三方广告/追踪 SDK（LiquidLink）上报
+URL-REGEX,^https:\/\/api\.liquidlink\.cn\/api\/,REJECT-DICT
+
+# 广告图片
+URL-REGEX,^https:\/\/tp\.spfcas\.com\/[^\/]+\/ads\/,REJECT-TINYGIF
+
+[Script]
+# 开屏广告 + 公告弹窗（startup 接口，通配所有备用域名）
+JavDB Startup = type=http-response,pattern=^https:\/\/.+\/api\/v1\/startup,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdbapp.js
+
+# 首页顶部 / 磁链页广告位
+JavDB Ads = type=http-response,pattern=^https:\/\/.+\/api\/v1\/ads,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdbapp.js
+
+[MITM]
+hostname = %APPEND% apidd.spthgb.com, apidd.czssdgz.com, apidd.btyjscl.com, api.ffaoa.com, api.aliycloud.com, api.liquidlink.cn, tp.spfcas.com
