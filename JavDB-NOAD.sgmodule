@@ -1,17 +1,21 @@
 #!name=JavDB (Astarte) 去广告 & 去公告
-#!desc=去除 JavDB App 开屏广告、公告/請注意弹窗、首页/磁链页广告。逻辑复用已验证的 javdbapp.js（script-path 外链），MITM 覆盖全部备用域名。
+#!desc=移除 JavDB App 开屏广告、首页顶部/磁链页广告位、启动公告弹窗，并拦截第三方追踪 SDK。机制对齐已验证可用的 javdbapp.sgmodule：script-path 外链 + %APPEND% MITM + [Rule] 拒绝。
 #!author=lesspem
 #!homepage=https://github.com/lesspem/Surge
 
-# 必须解密所有备用 API 域名才能让脚本拿到明文 body（Surge 需单独开启 MitM 并信任 CA，与 QX 互不通用）
-[MITM]
-hostname = apidd.spthgb.com, apidd.czssdgz.com, apidd.btyjscl.com, api.ffaoa.com, api.aliycloud.com, api.liquidlink.cn, tp.spfcas.com
+[Rule]
+# 第三方广告/追踪 SDK（LiquidLink）上报
+URL-REGEX,^https:\/\/api\.liquidlink\.cn\/api\/,REJECT-DICT
 
-# 兜底：直接拒绝广告图片 CDN 与第三方归因 SDK
-[URL Rewrite]
-^https?:\/\/tp\.spfcas\.com\/[^\/]+\/ads\/.*$ reject-img
-^https?:\/\/api\.liquidlink\.cn\/api\/.*$ reject-dict
+# 广告图片
+URL-REGEX,^https:\/\/tp\.spfcas\.com\/[^\/]+\/ads\/,REJECT-TINYGIF
 
-# 核心：外链脚本处理 startup/ads 两接口（匹配任意域名，覆盖全部备用 API）
 [Script]
-javdb_ad_remover = type=http-response, pattern=^https?:\/\/.+\/api\/v\d+\/(ads|startup), requires-body=1, max-size=-1, script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdb_surge.js
+# 开屏广告 + 公告弹窗（startup 接口，通配所有备用域名）
+JavDB Startup = type=http-response,pattern=^https:\/\/.+\/api\/v1\/startup,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdbapp.js
+
+# 首页顶部 / 磁链页广告位
+JavDB Ads = type=http-response,pattern=^https:\/\/.+\/api\/v1\/ads,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/lesspem/Surge/main/javdbapp.js
+
+[MITM]
+hostname = %APPEND% apidd.spthgb.com, apidd.czssdgz.com, apidd.btyjscl.com, api.ffaoa.com, api.aliycloud.com, api.liquidlink.cn, tp.spfcas.com
