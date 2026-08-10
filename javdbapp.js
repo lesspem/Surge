@@ -15,16 +15,16 @@
   }
 
   if (obj && obj.data) {
-    // /api/v1/startup: 关闭开屏广告 + 清空公告
+    // /api/v1/startup: 移除开屏广告 + 公告
     if (url.indexOf('/api/v1/startup') !== -1) {
-      if (obj.data.splash_ad) {
-        obj.data.splash_ad.enabled = false;
-        obj.data.splash_ad.overtime = 0;
-        obj.data.splash_ad.ad = null;
-      }
+      // 整个 splash_ad 结构删掉，让 App 直接跳过开屏流程
+      // （仅置 enabled=false 时 App 仍会渲染空白占位并跑 1-4 秒倒计时）
+      delete obj.data.splash_ad;
+
       if (obj.data.settings) {
-        obj.data.settings.NOTICE = '';
-        obj.data.settings.UPDATE_DESCRIPTION = '';
+        // 删除键而非置空字符串，避免 App 仍弹出公告框
+        delete obj.data.settings.NOTICE;
+        delete obj.data.settings.UPDATE_DESCRIPTION;
       }
     }
     // /api/v1/ads: 清空首页顶部 / 磁链页广告
@@ -36,4 +36,3 @@
 
   $done({ body: JSON.stringify(obj) });
 })();
-
