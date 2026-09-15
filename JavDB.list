@@ -1,9 +1,9 @@
 # NAME: JavDB
 # AUTHOR: lesspem
 # REPO: https://github.com/lesspem/Surge
-# UPDATED: 2026-08-28 01:00:00
-# DOMAIN-SUFFIX: 23
-# TOTAL: 23
+# UPDATED: 2026-09-16 03:40:00
+# DOMAIN-SUFFIX: 25
+# TOTAL: 25
 DOMAIN-SUFFIX,javdb.com
 DOMAIN-SUFFIX,javdb.app
 DOMAIN-SUFFIX,javdb.vip
@@ -20,7 +20,10 @@ DOMAIN-SUFFIX,javdb571.com
 DOMAIN-SUFFIX,javdb572.com
 DOMAIN-SUFFIX,javdb573.com
 DOMAIN-SUFFIX,javdb574.com
+DOMAIN-SUFFIX,javdb575.com
 DOMAIN-SUFFIX,javdb576.com
+# 2026-09-16 新增: 首页公告指向的当前镜像(实测 200), 旧列表最高只到 576
+DOMAIN-SUFFIX,javdb580.com
 # App: API 域名, 取自 javdbapp.conf 的 mitm hostname 实测清单
 DOMAIN-SUFFIX,apidd.spthgb.com
 DOMAIN-SUFFIX,apidd.czssdgz.com
