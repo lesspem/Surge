@@ -1,14 +1,13 @@
 # NAME: JavDB
 # AUTHOR: lesspem
 # REPO: https://github.com/lesspem/Surge
-# UPDATED: 2026-09-16 03:40:00
-# DOMAIN-SUFFIX: 25
-# TOTAL: 25
+# UPDATED: 2026-09-16 04:20:00
+# DOMAIN-SUFFIX: 36
+# TOTAL: 36
 DOMAIN-SUFFIX,javdb.com
 DOMAIN-SUFFIX,javdb.app
 DOMAIN-SUFFIX,javdb.vip
 DOMAIN-SUFFIX,jav.app
-DOMAIN-SUFFIX,c0.jdbstatic.com
 DOMAIN-SUFFIX,javdb500.com
 DOMAIN-SUFFIX,javdb534.com
 DOMAIN-SUFFIX,javdb565.com
@@ -24,11 +23,26 @@ DOMAIN-SUFFIX,javdb575.com
 DOMAIN-SUFFIX,javdb576.com
 # 2026-09-16 新增: 首页公告指向的当前镜像(实测 200), 旧列表最高只到 576
 DOMAIN-SUFFIX,javdb580.com
-# App: API 域名, 取自 javdbapp.conf 的 mitm hostname 实测清单
+DOMAIN-SUFFIX,jdbstatic.com
+DOMAIN-SUFFIX,blxr5es.com
+# App: API 域名
 DOMAIN-SUFFIX,apidd.spthgb.com
 DOMAIN-SUFFIX,apidd.czssdgz.com
 DOMAIN-SUFFIX,apidd.btyjscl.com
 DOMAIN-SUFFIX,api.ffaoa.com
 DOMAIN-SUFFIX,api.aliycloud.com
-# App: 图片 / CDN
+# App: 图片 / CDN(无水印封面源)
 DOMAIN-SUFFIX,tp.spfcas.com
+# JHS-Pro 外链源(直连会被墙)
+DOMAIN-SUFFIX,whatslink.info
+DOMAIN-SUFFIX,subtitlecat.com
+# 磁力相关
+DOMAIN-SUFFIX,u3c3.com
+DOMAIN-SUFFIX,u9a9.com
+DOMAIN-SUFFIX,btsow.lol
+DOMAIN-SUFFIX,sukebei.nyaa.si
+DOMAIN-SUFFIX,magnet.pics
+# 2026-09-16 新增: JHS-Pro 磁力引擎(国内直连实测 000)
+DOMAIN-SUFFIX,clg55.top
+DOMAIN-SUFFIX,btsearch.love
+DOMAIN-SUFFIX,sokitty.me
